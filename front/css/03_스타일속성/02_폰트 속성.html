@@ -30,10 +30,26 @@
     - 폰트 크기
     - 숫자와 단위를 함께 사용(단위 빼먹지 말자)
 
-    
+    font-family
+    - 폰트 종류를 지정
+    - 일반적으로 여러 폰트를 한번에 함께 지정
+        - 왜? 폰트가 없을 수 있어서
+        - 제일 왼쪽부터 적용해서 있으면 적용. 없으면 옆으로 이동
+        - 보통 제일 오른쪽은 기본 폰트 중 하나를 선택(monospace, serif, sans-serif)
+    - 한글명 폰트는 영문도 함께 작성
+    - 폰트명에 공백이 있는 경우는 ''나 ""를 사용
     -->
+    <style>
+        *{ font-size: 30px; font-weight: bold;}
+        .box1{ font-family: 'Courier New', Courier, monospace; color: red;}
+        .box2{ font-family: 'Times New Roman', Times, serif; color: #00ff00;}
+        .box3{ font-family: Arial, Helvetica, sans-serif; color: (0,0,255, .9);}
+    </style>
 </head>
 <body>
-    
+   <h1>font-family 예제</h1> 
+    <div class="box1">안녕하세요. ABC</div>
+    <div class="box2">안녕하세요. ABC</div>
+    <div class="box3">안녕하세요. ABC</div>
 </body>
 </html>
