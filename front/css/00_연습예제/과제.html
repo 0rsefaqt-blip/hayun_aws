@@ -5,29 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>과제</title>
     <style>
+        /* 정답 */
+        .container{ border: 3px solid black; width: 500px; margin-bottom: 30px;}
+        .wrap{ 
+            padding: 10px; 
+            background-color: skyblue;
+        }
+        .box{ 
+            background-color: red; 
+            height: 100px; 
+            float: left; 
+            width: calc( (100% - 1 * 10px) / 2);
+        }
+        .wrap::after{ content: ''; display: block; clear: both;}
+        .box+.box{ margin-left: 10px}
+       
+       /* 따라해봤는데 안됨 */
+        .container1{ width: 500px; border: 3px solid black; margin-bottom: 30px;} 
+        .wrap1{ background-color: aquamarine; padding: 10px;}
+        .box1{ background-color: blueviolet; height: 100px; 
+            float: left; width: calc((100%-1*10px)/2);}
+        .wrap1::after{ clear: both; content: ''; display: block;}
+        .box1+.box1{ margin-left: 10px;}
+
         
-        .container{ 
+
+
+       /* 내가 학원에서 한 풀이 안됨*/
+        .container2{ 
+            width: 480px; 
+            background-color: deeppink;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+        .box2{ 
+            height: 100px; background-color: khaki;
+            float: left;
+        }
+        .box2::after{ display: block; content: ''; clear: both;}
+        .box2:first-child{ margin-right: 10px;}
+
+        /* 집에서 한 풀이 */
+        .container3{ 
             width: 480px; border: 2px solid black; padding: 10px;
             background: blue;   
         }
-        .box1,.box2{ 
+        .box3,.box4{ 
             width: 235px; height: 100px; background-color: red;  
         }
-        .box1{ float: left; margin-right: 10px; }
+        .box3{ float: left; margin-right: 10px; }
     
-        .box2{ 
+        .box4{ 
             float: left; 
         }
-        .container::after{content: ''; display: block; clear: both;}
-       
+        .container3::after{content: ''; display: block; clear: both;}
+
     </style>
 </head>
 <body>
+    <!-- 정답 -->
     <div class="container">
-       
-        <div class="box1"></div>
+        <div class="wrap">
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <!-- 따라해봤는데 안됨 -->
+    <div class="container1">
+        <div class="wrap1">
+            <div class="box1"></div>
+            <div class="box1"></div>
+        </div>
+    </div>
+<!-- 학원에서 2트째 안됨 -->
+    <div class="container12">
         <div class="box2"></div>
-        
+        <div class="box2"></div>
+    </div>
+    <!-- 집에서 한 풀이 잘 나옴 -->
+    <div class="container3">
+        <div class="box3"></div>
+        <div class="box4"></div>
     </div>
 </body>
 </html>
