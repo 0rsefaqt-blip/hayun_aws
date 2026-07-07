@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이미지 확대 예제</title>
     <style>
-        .box{ width: 150px;}
+        .box{ width: 150px;
+        }
         .wrap{ 
             width: 100%; height: 150px; 
             /* 이미지를 확대했을 때 넘어가는 부분이 안보이게 하기 위해 */
@@ -22,8 +23,11 @@
             margin-top: 5px;
         }
         .line{ display: block;}
-        .box:hover img{ transform: scale(1.03);}
+        .box:hover img{ transform: scale(1.03);
+        }
         .box:hover .line{ text-decoration: underline;}
+        /* 트랜지션은 호버가 아닌곳에 넣어야 마우스를 뗏을 때도 적용 */
+        .box img{ transition: transform 200ms}
     </style>
 </head>
 <body>

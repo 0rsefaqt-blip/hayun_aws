@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 내가한것 */
+        .box{ 
+           width: 200px; height: 150px; border: 3px solid black; 
+           position: relative;
+           overflow: hidden;
+        }
+        
+        .box:hover .box1{
+            height: 150px; width: 200px;
+            background-color: aqua; 
+            display: block;
+            position: absolute;
+            top: 0; left: 0;
+            line-height: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 내가한것 -->
+    <div class="box">
+            <img src="../../img/깜.jpg" alt="" height="150px" width="200px" >
+            <div class="box1">
+                <div>클릭</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

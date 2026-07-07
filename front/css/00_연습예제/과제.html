@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>과제</title>
     <style>
-        /* 정답 */
+        /* 1 정답 */
         .container{ border: 3px solid black; width: 500px; margin-bottom: 30px;}
         .wrap{ 
             padding: 10px; 
@@ -20,18 +20,18 @@
         .wrap::after{ content: ''; display: block; clear: both;}
         .box+.box{ margin-left: 10px}
        
-       /* 따라해봤는데 안됨 */
+       /* 2 따라해봤는데 안됨 */
         .container1{ width: 500px; border: 3px solid black; margin-bottom: 30px;} 
         .wrap1{ background-color: aquamarine; padding: 10px;}
         .box1{ background-color: blueviolet; height: 100px; 
-            float: left; width: calc((100%-1*10px)/2);}
+            float: left; width: calc((100% - 1 * 10px) / 2);}
         .wrap1::after{ content: ''; display: block; clear: both;}
         .box1+.box1{ margin-left: 10px;}
 
         
 
 
-       /* 내가 학원에서 한 풀이 안됨*/
+       /* 3 내가 학원에서 한 풀이 안됨*/
         .container2{ 
             width: 480px; 
             background-color: deeppink;
@@ -40,12 +40,12 @@
         }
         .box2{ 
             height: 100px; background-color: khaki;
-            float: left;
+            display: flex;
         }
         .box2::after{ display: block; content: ''; clear: both;}
         .box2:first-child{ margin-right: 10px;}
 
-        /* 집에서 한 풀이 */
+        /* 4 집에서 한 풀이 */
         .container3{ 
             width: 480px; border: 2px solid black; padding: 10px;
             background: blue;   
