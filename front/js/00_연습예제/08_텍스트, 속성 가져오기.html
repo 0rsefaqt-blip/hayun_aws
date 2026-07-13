@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>텍스트 속성 예제</title>
+</head>
+<body>
+  <!-- 1. 더보기 버튼을 클릭하면 접기가 되도록 작성하세요. -->
+  <button id="btn1">더보기</button><br>
+  
+  <!-- 2. 더보기 버튼을 클릭하면 접기가 되고, 접기 버튼을 클릭하면 더보기가 되도록 작성하세요. -->
+  <button id="btn2">더보기</button>
+  <br>
+  <!-- 3. 공백 체크 버튼을 클릭하면 입력된 input태그의 값이 빈문자열인지 아닌지 확인하는 코드 작성하세요 -->
+  <input type="text" id="text">
+  <button id="btn3">공백 체크</button>
+
+  <script>
+    const btn1 = document.querySelector('#btn1');
+    btn1.addEventListener('click', function(){
+      //let text = btn1.innerText;
+      //console.log(text)
+      //btn1.innerHTML = '접기';
+      btn1.textContent = '접기'; //이너텍스트는 자동완성이 안되기때문에 텍스트컨텐츠 추천
+    });
+    
+    //이벤트를 등록할 태그 선택
+    const btn2 = document.querySelector('#btn2');
+    //해당 태그에 이벤트를 등록
+    btn2.addEventListener('click', function(){
+      //텍스트가 더보기이면 텍스트를 접기로 변경하고
+      if(btn2.textContent == '더보기'){
+        btn2.textContent = '접기'
+      } 
+      //아니면 텍스트를 더보기로 변경
+      else{
+        btn2.textContent = '더보기'
+      }
+    });
+    
+    
+    //버튼 이벤트를 등록할 요소 선택
+    const btn3 = document.querySelector('#btn3')
+    //input태그 요소 선택
+    const text = document.querySelector('#text')
+    //버튼 이벤트 등록
+    btn3.addEventListener('click', function(){
+      //input태그의 입력값 가져오기
+      let value = text.value;
+      //input태그의 입력값이 빈문자열과 같다면 공백입니다라고 alert로 출력하고
+      if(value == '' ){
+        alert('공백입니다')
+      }
+      //아니면 공백이 아닙니다라고 alert로 출력
+      else{ alert('공백이 아닙니다.')}
+    });
+
+    //이벤트를 등록할 태그를 선택
+    //const btn1 = document.querySelector('#btn1');
+    //해당 태그에 이벤트를 등록
+
+    //★★★★★ 이벤트 등록방법 외우기 요소.addEventListener('이벤트명', function(){});
+
+    //btn1.addEventListener('click', function(){
+      //console.log('이벤트 확인용. 확인하면 주석 또는 제거');
+    //});
+    </script>
+  </script>
+</body>
+</html>
