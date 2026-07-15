@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습 예제</title>
+</head>
+<body>
+  <button id="mi">-</button>
+  <span class="box">1</span>
+  <span>/</span>
+  <span class="box1">6</span>
+  <button id="pl">+</button>
+  <!-- 
+	+ 버튼을 클릭
+	- 박스에 숫자가 1씩 증가
+	- 최대 6까지 증가
+	- 6에서 +를 누르면 1로 수정
+	
+	-버튼을 클릭
+	- 박스에 숫자가 1씩 감소
+	- 최소 1까지 감소
+	- 1에서 -를 누르면 6으로 수정
+	-->
+	
+  <script>
+
+    const 마이너스버튼 = document.querySelector('#mi')
+    const 플러스버튼 = document.querySelector('#pl')
+    const 박스 = document.querySelector('.box')
+    const 박스1 = document.querySelector('.box1')
+
+      플러스버튼.addEventListener('click', function(){
+        //박스의 텍스트 가져오기
+        let text = 박스.textContent; 
+        let num = parseInt(text); 
+        if(num <6){
+          ++num;
+          박스.textContent = num;
+        }
+        else if(num == 6){
+          박스.textContent = 1;
+        }
+
+        }
+
+      )
+      마이너스버튼.addEventListener('click', function(){
+        //박스의 텍스트 가져오기
+        let text = 박스.textContent; 
+        let num = parseInt(text); 
+        --num;
+        if(num >0){
+          박스.textContent = num;
+        }
+        else if(num == 0){
+          박스.textContent = 6;
+        }
+
+        }
+
+      )
+    
+  </script>
+</body>
+</html>

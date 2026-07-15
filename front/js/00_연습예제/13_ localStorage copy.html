@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Storage</title>
+</head>
+<body>
+ <input type="text" id="text">
+	<button id="btnAdd">추가</button>
+	<button id="btnSave">로컬 저장소에 저장</button>
+	<h1>입력된 내용</h1>
+	<ul id="list"></ul>
+	<h1>저장된 내용</h1>
+	<ul id="list-save"></ul>
+
+	<script>
+
+    /* 추가 버튼을 클릭하면 alert이 뜨도록 작업*/
+		//추가 버튼 선택. id가 btnAdd인 요소를 선택
+		
+		const addBtn = document.querySelector('#btnAdd')
+
+		let list = [];
+
+		addBtn.addEventListener('click', function(){
+			const textInput = document.querySelector('#text')
+			let value = textInput.value;
+			list.push(value);
+			textInput.value = '';
+
+			const listUl = document.querySelector('#list');
+			let str = `<li>${value}</li>`;
+
+			listUl.innerHTML = listUl.innerHTML + str;
+      console.log(listUl)
+		});
+
+		const saveBtn = document.querySelector('#btnSave')
+		saveBtn.addEventListener('click', function(){
+			localStorage.setItem("list", JSON.stringify(list));
+
+
+			let itemStr = localStorage.getItem("list");
+			
+			let item = JSON.parse(itemStr);
+
+			const listSaveUl = document.querySelector('#list-save');
+			console.log(item)
+			for(i = 0; i < item.length; ++i){
+				let str = `<li>${item[i]}</li>`;
+				listSaveUl.innerHTML = listSaveUl.innerHTML + str;
+			}		
+		})
+	</script>
+</body>
+</html>
