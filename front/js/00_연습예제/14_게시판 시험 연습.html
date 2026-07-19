@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   form{
+    width: 500px; 
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    box-shadow: 0 0 2px black;
+   }
+   
+   .form-control, button{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+   }
+   button{
+    cursor: pointer;
+   }
+   #title, #writer{
+    height: 30px;
+   }
+   #content{
+    height: 200px;
+   }
+   table{
+    width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+   }
+   table tr{
+    border: 1px solid black;
+    border-width:1px 0;
+   }
+   th:nth-of-type(1), td:nth-of-type(1){
+    width: 10%; text-align: center;
+   }
+   th:nth-of-type(2), td:nth-of-type(2){
+    width: 70%;
+   }
+   th:nth-of-type(3), td:nth-of-type(3){
+    width: 20%; text-align: center;
+   }
+  </style>
+</head>
+<body>
+  <form action="">
+    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
+    <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요.">
+    <textarea name="" class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+    <button type="submit">등록</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr> -->
+    </tbody>
+  </table>
+
+  <script>
+
+    // 등록
+    //    ↓
+    // posts.push()
+    //    ↓
+    // localStorage.setItem()
+    //    ↓
+    // 새로고침
+    //    ↓
+    // getItem()
+    //    ↓
+    // JSON.parse()
+    //    ↓
+    // for문으로 화면 출력
+    let posts = [];
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+    
+    const title1 = document.querySelector('#title');
+    let title = title1.value;
+
+    const writer1 = document.querySelector('#writer');
+    let writer = writer1.value;
+
+    const content1 = document.querySelector('#content');
+    let content = content1.value;
+
+    let post = {
+      num : posts.length +1,
+      title: title,
+      writer : writer,
+      content: content
+    }
+
+    posts.push(post);
+    
+    addpost(post);
+    localStorage.setItem('posts',JSON.stringify(posts))
+    })
+   function addpost(post){
+      if(!post){
+        return;
+      }
+        const tbodyEl = document.querySelector('.table tbody')
+        const str = `
+        <tr>
+          <td>${post.num}</td>
+          <td>${post.title}</td>
+          <td>${post.writer}</td>
+          </tr>
+          `
+          tbodyEl.innerHTML = tbodyEl.innerHTML + str;
+    }
+
+    // 새로고침하면 화면과 posts 배열은 초기화
+    // localstorage는 초기화되지않음
+    // 그래서 localstorage에서 다시 읽어서 화면에 출력하는 코드가 필요한것
+
+    document.addEventListener('DOMContentLoaded',function(){
+
+      posts = JSON.parse( localStorage.getItem('posts'));
+      if(!posts){
+        posts = [];
+        return;
+      }
+      for(let i=0; i<posts.length; ++i){
+      let post = posts[i]
+      addpost(post);
+
+    }});
+    
+
+
+
+
+  </script>
+</body>
+</html>

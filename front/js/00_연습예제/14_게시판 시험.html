@@ -26,6 +26,7 @@
       display: block; width: 100%;
       box-sizing: border-box;
       cursor: pointer;
+      
     }
     .table{
       width: 500px;
@@ -113,12 +114,24 @@
         content : content
       }
       
+      /*
+      등록 작업 시작
+       ↓
+      ① 화면에 게시글 보여주기 (insertPostToTable 함수)
+       ↓
+      ② 게시글 목록에 추가하기 (posts.push)
+       ↓
+      ③ 브라우저에 저장하기 (localStorage.setItem)
+       ↓
+      */
+
       //게시글을 테이블에 추가
       insertPostToTable(post)
       //로컬 스토리지에 저장
       posts.push(post)
       localStorage.setItem('posts', JSON.stringify(posts))
     });
+    // 여기까지의 설명
     function insertPostToTable(post){
       //게시글이 비어 있으면
       if(!post){

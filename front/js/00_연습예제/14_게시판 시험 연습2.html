@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    form{
+      width: 500px;
+      box-shadow: 0 0 5px black;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .form-control, .btn{
+      display: block;
+      border-radius: 5px;
+      font-size: 18px;
+      box-sizing: border-box;
+      height: 30px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    #content{
+      height: 300px;
+      
+    }
+    button{
+      cursor: pointer;
+    }
+    table{
+      width: 500px;
+      border: 1px solid black;
+      border-width: 2px 0;
+      border-collapse: ;
+    }
+  
+  </style>
+</head>
+<body>
+  <!-- 틀 만들기 -->
+  <form action="">
+    <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요." >
+    <input type="text" class="form-control" id="writer" placeholder="작성자를 입력하세요.">
+    <textarea name="" class="form-control" id="content" placeholder="내용을 입력하세요."></textarea>
+    <button class="btn">등록</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  <script>
+    /*
+    버튼을 누르면 서브밋 이벤트 발생
+    서브밋의 원래 행동을 막기(새로고침)
+    타이틀 라이터 컨텐츠를 불러와서 객체 만들기
+    그 객체를 배열에 추가하기
+    이때 객체가 없으면 끝내기
+    
+    
+페이지 열림
+
+localStorage 읽기
+
+화면 출력
+==================
+등록 버튼
+
+submit
+
+preventDefault()
+
+입력값 가져오기
+
+객체 생성
+
+배열 저장
+
+화면 출력
+
+localStorage 저장
+==================
+새로고침
+
+localStorage 읽기
+
+배열 복원
+
+for문
+
+화면 출력
+    */
+
+    let posts = [];
+    const form = document.querySelector('form')
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+
+      
+      
+      const titleEl = document.querySelector('#title')
+      let title = titleEl.value
+      const writerEl = document.querySelector('#writer')
+      let writer = writerEl.value
+      const contentEl = document.querySelector('#content')
+      let content = contentEl.value
+      
+      let post = {
+        num:posts.length+1,
+        title:title,
+        writer:writer,
+        content:content
+      }
+
+      addpost(post);
+      posts.push(post);
+      localStorage.setItem('posts',JSON.stringify(posts));
+        
+    });
+    function addpost(post){
+      if(!post){
+        return;
+      }
+      const tbody1 = document.querySelector('tbody')
+      
+      let str = `
+      <tr>
+          <td>${post.num}</td>
+          <td>${post.title}</td>
+          <td>${post.writer}</td>
+        </tr>
+      `
+      tbody1.innerHTML = tbody1.innerHTML + str
+    }
+    
+    document.addEventListener('DOMContentLoaded',function(){
+      posts = JSON.parse(localStorage.getItem('posts'));
+
+      if(!posts){
+        posts = [];
+        return;
+      }
+      for(let i=0; i< posts.length; ++i){
+        let post = posts[i]
+        addpost(post)
+      }
+    })
+
+
+  </script>
+</body>
+</html>
