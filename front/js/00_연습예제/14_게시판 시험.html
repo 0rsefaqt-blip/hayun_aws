@@ -84,6 +84,22 @@
   </table>
   <script>
 
+
+    // 등록
+    //    ↓
+    // posts.push()
+    //    ↓
+    // localStorage.setItem()
+    //    ↓
+    // 새로고침
+    //    ↓
+    // getItem()
+    //    ↓
+    // JSON.parse()
+    //    ↓
+    // for문으로 화면 출력
+
+    
     //현재 등록된 게시글들을 관리하는 배열
     let posts = [];
     //form태그가 전송될때 (등록버튼을 클릭했을때) 이벤트 등록 
@@ -150,6 +166,10 @@
       `
       tbodyE1.innerHTML = tbodyE1.innerHTML + str;
     }
+
+    // 새로고침하면 화면과 posts 배열은 초기화
+    // localstorage는 초기화되지않음
+    // 그래서 localstorage에서 다시 읽어서 화면에 출력하는 코드가 필요한것
 
     //화면이 로딩되면 로컬 스토리지에 있는 게시글 목록을 가져와서 화면에 출력
     document.addEventListener('DOMContentLoaded', function(){
