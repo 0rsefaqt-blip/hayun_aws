@@ -83,28 +83,29 @@
   </table>
   <script>
 
-    
+    //현재 등록된 게시글들을 관리하는 배열
     let posts = [];
-    
-    
+    //form태그가 전송될때 (등록버튼을 클릭했을때) 이벤트 등록 
+    //1. 요소 선택
     const form = document.querySelector('#form');
-    
+    //2. 이벤트 등록
+    //전송할때 서브밋
     form.addEventListener('submit', function(e){
-      
-      e.preventDefault();
-      
+      //전송 기능 막기
+      e.preventDefault(); //태그의 기본 기능을 막음
+      //제목 가져오기
       const titleEl = document.querySelector('#title');
       let title = titleEl.value;
-      
+      //작성자 가져오기
       const writerEl = document.querySelector('#writer');
       let writer = writerEl.value;
-      
+      //내용 가져오기
       const contentEl = document.querySelector('#content');
       let content = contentEl.value;
 
       console.log(title, writer, content)
 
-      
+      //제목, 작성자, 내용을 이용하여 객체를 생성
       let post = {
         num : posts.length + 1,
         title : title,
@@ -112,18 +113,18 @@
         content : content
       }
       
+      //게시글을 테이블에 추가
       insertPostToTable(post)
-      
+      //로컬 스토리지에 저장
       posts.push(post)
       localStorage.setItem('posts', JSON.stringify(posts))
     });
-    
     function insertPostToTable(post){
-      
+      //게시글이 비어 있으면
       if(!post){
         return;
       }
-      
+      // 1. 게시글 정보를 추가할 요소를 선택
       const tbodyE1 = document.querySelector('.table tbody');
       let str = `
         <tr>
@@ -136,14 +137,18 @@
       `
       tbodyE1.innerHTML = tbodyE1.innerHTML + str;
     }
+
+    //화면이 로딩되면 로컬 스토리지에 있는 게시글 목록을 가져와서 화면에 출력
     document.addEventListener('DOMContentLoaded', function(){
-      
+      //로컬 저장소에서 게시글 목록을 가져옴
       posts = JSON.parse(localStorage.getItem('posts'));
+      
+      //저장된 게시글 목록이 없으면
       if(!posts){
         posts = [];
-        return;
+        return ;
       }
-      
+      //가져온 게시글 목록을 반복문으로 화면에 출력
       for(i=0; i< posts.length; ++i){
         let post = posts[i];
         insertPostToTable(post);

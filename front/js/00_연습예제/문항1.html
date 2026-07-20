@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h1{
+      width: 500px;
+      text-align: center;
+    }
+    form{
+      
+      opacity: 50%;
+      width: 500px;
+      padding: 10px;
+
+    }
+    #memo{
+      width: 85%;
+      height: 100px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      float: left;
+      margin-right: 10px;
+      font-size: 15px;
+      padding: 10px;
+    }
+    .wrap::after{ content: ''; display: block; clear: both;}
+    button{
+      width: 12%;
+      height: 100px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      background: blue;
+      float: left;
+      color: white;
+    }
+    table{
+      margin-top: 10px;
+      width: 500px;
+      border-collapse: collapse;
+    }
+    table tr{
+      border: 1px solid white;
+      box-shadow: 0 0 15px gray;
+      padding: 10px;
+      box-sizing: border-box;
+      line-height: 30px;
+      border-radius: 5px;
+      width: 100%;
+      background-color: white;
+      display: block;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>메모패드 📝
+    <img src="" alt="">
+  </h1>
+  <form action="" id="form">
+    <div class="wrap">
+    <textarea name="" id="memo" placeholder="메모를 입력하세요 ..."></textarea>
+    <button class="btn">추가</button>
+    </div>
+    <table class="table">
+      <thead>
+        
+      </thead>
+    </table>
+  </form>
+
+  <script>
+    let posts = [];  
+
+    const form = document.querySelector('#form');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      
+      const contentEl = document.querySelector('#memo');
+      let content = contentEl.value;
+      
+      let post = {
+        num : posts.length + 1,
+        content : content
+      }
+
+      addpost(post);
+      posts.push(post);
+      localStorage.setItem('posts', JSON.stringify(posts))
+      console.log(content)
+      contentEl.value = '';
+    });
+    function addpost(post){
+      if(!post){
+        return;
+      }
+      const theadE1 = document.querySelector('.table thead');
+      let str = `
+        <tr>
+          <th>${post.content}</th>
+        </tr>
+      `
+      theadE1.innerHTML = theadE1.innerHTML + str;
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      posts = JSON.parse(localStorage.getItem('posts'));
+      
+      if(!posts){
+        posts = [];
+        return;
+      }
+      for(i=0; i< posts.length; ++i){
+        let post = posts[i];
+        addpost(post);
+      }
+    });
+  </script>
+</body>
+</html>
