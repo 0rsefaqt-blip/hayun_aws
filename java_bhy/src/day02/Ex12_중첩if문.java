@@ -33,10 +33,12 @@ public class Ex12_중첩if문 {
         if (op == '/') {
             if (num2 != 0) {
                 System.out.println(num1 / num2);
-            } else {
+            } 
+            else {
                 System.out.println("0으로 나눌 수 없습니다.");
             }
-        } else if (op == '%') {
+        } 
+        else if (op == '%') {
             if (num2 != 0) {
                 System.out.println(num1 % num2);
             } else {
