@@ -1,0 +1,38 @@
+package day06;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Ex15_숫자야구게임 {
+
+	public static void main(String[] args) {
+		/*  숫자 야구게임을 구현하세요.
+		 * 1~9 사이의 중복되지않은 3개의 랜덤한 수를 생성 : com
+		 * 이 수를 맞추는 게임
+		 * 규칙
+		 * S : 숫자가 있고 위치가 같은 경우
+		 * B : 숫자가 있지만 위치가 다른 경우
+		 * O : 일치하는 숫자가 하나도 없는 경우
+		 * 3S : 게임종료
+		 * 예시
+		 * 랜덤 : 1 9 4
+		 * 입력 : 1 2 3
+		 * 결과 : 1S
+		 * 입력 : 4 5 6
+		 * 결과 : 1B
+		 * 입력 : 1 4 9
+		 * 결과 : 1S2B
+		 * 입력 : 6 7 8
+		 * 결과 : O
+		 * 입력 : 1 9 4
+		 * 결과 : 3S
+		 * 정답입니다. 
+		 */
+
+		
+	}
+	
+	
+
+}
