@@ -26,7 +26,7 @@ public class Ex06_반복문연습예제 {
 		}
 		//조건 연산자를 이용한 방법		
 		for(int i=1; i<=16; ++i) {
-			System.out.println("" + i + (i % 4 == 0 ? '\n' : ' '));
+			System.out.print("" + i + (i % 4 == 0 ? '\n' : ' '));
 		}
 	}
 

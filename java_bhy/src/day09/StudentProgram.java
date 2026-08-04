@@ -4,13 +4,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-//학생을 관리하는 프로그램 클래스
-public class StudentProgram implements ConsoleProgram {
+/* 학생을 관리하는 프로그램 클래스 */
+public class StudentProgram implements ConsolePromgram {
 	
 	private final int EXIT = 4;
 	private Scanner scan = new Scanner(System.in);
 	StudentManager manager;
-	
+
 	@Override
 	public void printMenu() {
 		System.out.println("-------------------------");
@@ -20,13 +20,14 @@ public class StudentProgram implements ConsoleProgram {
 		System.out.println("4. 프로그램 종료");
 		System.out.println("-------------------------");
 		System.out.print("메뉴 선택 : ");
-		
 	}
 
 	@Override
 	public void runMenu(int menu) {
+		
 		switch (menu) {
 		case 1:
+			printBar();
 			manager.printStudents();
 			break;
 		case 2:
@@ -41,23 +42,22 @@ public class StudentProgram implements ConsoleProgram {
 		default:
 			printBar("올바른 메뉴를 선택하세요.");
 		}
-		
 	}
 
 	private void updateScore() {
-		printBar("추가할 학생 정보 입력");
-		// 학년, 반, 번호를 입력
+		printBar("수정할 학생 정보 입력");
+		//학년, 반, 번호를 입력
 		System.out.print("학년 : ");
 		int grade = scan.nextInt();
-		System.out.print("반 : ");
+		System.out.print("반  : ");
 		int classNum = scan.nextInt();
 		System.out.print("번호 : ");
 		int num = scan.nextInt();
-
-		// 학생 개체를 생성(이름 대신 null)
+		
+		//학생 객체를 생성(이름 대신 null)
 		Student std = new Student(grade, classNum, num, null);
 		
-		// 국어 영어 수학 성적을 입력
+		//국어, 영어, 수학 성적을 입력
 		System.out.print("국어 : ");
 		int kor = scan.nextInt();
 		System.out.print("영어 : ");
@@ -65,7 +65,7 @@ public class StudentProgram implements ConsoleProgram {
 		System.out.print("수학 : ");
 		int math = scan.nextInt();
 		
-		// 매니저에게 학생 객체와 국어 영어 수학을 주면서 수정하라고 시킴
+		//매니저에게 학생객체와 국어, 영어, 수학을 주면서 수정하라고 시킴
 		if(manager.updateScore(std, kor, eng, math)) {
 			printBar("성적을 수정했습니다.");
 		}
@@ -76,30 +76,32 @@ public class StudentProgram implements ConsoleProgram {
 
 	private void insertStudent() {
 		printBar("추가할 학생 정보 입력");
-		//학년, 반, 번호, 이름을 입력받음
+		//학년, 반, 번호, 이름을 입력 받음. 이름은 next()로 받음
 		System.out.print("학년 : ");
-	    int grade = scan.nextInt();
-	    System.out.print("반 : ");
-	    int classNum = scan.nextInt();
-	    System.out.print("번호 : ");
-	    int num = scan.nextInt();
-	    System.out.print("이름 : ");
-	    String name = scan.next();
+		int grade = scan.nextInt();
+		System.out.print("반  : ");
+		int classNum = scan.nextInt();
+		System.out.print("번호 : ");
+		int num = scan.nextInt();
+		System.out.print("이름 : ");
+		String name = scan.next();
 		
-		//학년, 반, 번호, 이름을 이용하여 학생 객체를 생성
-	    Student std = new Student(grade,classNum,num,name);
-	    if(manager.insertStudent(std)) {
-	    	printBar("학생을 추가했습니다.");
-	    }
-	    else {
-	    	printBar("이미 등록된 학생이어서 추가하지 못했습니다.");
-	    }
+		//학년,반,번호,이름을 이용하여 학생 객체를 생성
+		Student std = new Student(grade, classNum, num, name);
+		//매니저에게 학생 등록하라고 시킨 후 성공하면 성공 알림을
+		if(manager.insertStudent(std)) {
+			printBar("학생을 추가했습니다.");
+		}
+		//실패하면 실패 알림을 띄움
+		else {
+			printBar("이미 등록된 학생이어서 추가하지 못했습니다.");
+		}
+		
 	}
 
 	@Override
 	public void printExit() {
-		printBar("학생 관리 프로그램을 종료합니다");
-		
+		printBar("학생 관리프로그램을 종료합니다.");
 	}
 
 	@Override
@@ -110,7 +112,8 @@ public class StudentProgram implements ConsoleProgram {
 
 	@Override
 	public void run() {
-		/* 저장기능과 불러오기 기능이 있는 프로그램을 구현하세요.
+		/* day05패키지에 있는 Ex09_학생관리프로그램 예제를 참고하여 
+		 * 저장기능과 불러오기 기능이 있는 프로그램을 구현하세요.
 		 * - 참고 예제
 		 *   - day05.Ex09_학생관리프로그램
 		 *   - day08.Ex04_보조스트림
@@ -120,7 +123,8 @@ public class StudentProgram implements ConsoleProgram {
 		 * - 학생 추가할 때 학년,반,번호가 같은 학생은 추가로 입력 
 		 *   못하게 구현
 		 * */
-	    String fileName = "src/day09/student.txt";  
+		
+		String fileName = "src/day09/student.txt";
 		//불러오기
 		List<Student> list = (List<Student>)load(fileName);
 		int menu = 0;
@@ -133,28 +137,24 @@ public class StudentProgram implements ConsoleProgram {
 				//메뉴 선택
 				menu = scan.nextInt();
 				//선택한 메뉴 실행
-				runMenu(menu);
-				
+				runMenu(menu);			
 			}catch(InputMismatchException e) {
 				System.out.println("올바른 메뉴를 선택하세요.");
 				//잘못 입력된 값을 제거
 				scan.nextLine();
-			}			
+			}
 		}while(menu != EXIT);
-			
+		
 		//저장하기
 		save(fileName, manager.getList());
-		}
-		private void printBar() {
-			System.out.println("--------------------");
-		}
-		
-		private void printBar(String str) {
-			System.out.println("--------------------");
-			System.out.println(str);
-			System.out.println("--------------------");
-			
-		
 	}
-
+	
+	private void printBar() {
+		System.out.println("-------------------------");
+	}
+	private void printBar(String str) {
+		System.out.println("-------------------------");
+		System.out.println(str);
+		System.out.println("-------------------------");
+	}
 }
