@@ -82,3 +82,6 @@ values('ACC004', '커플반지', '커플반지입니다', 150000, null, 'ACC');
 # 악세서리 -  제품명 : 돌반지, 내용 : 아이 돌반지입니다. 가격 : 350000, 썸네일 없음 
 insert into product(code, name, content, price, thumbnail, ca_code)
 values('ACC005', '돌반지', '아이 돌반지입니다.', 350000, null, 'ACC');
+
+# 모든 제품 재고 입고(각 10개)
+update product set amount = amount + 10;
