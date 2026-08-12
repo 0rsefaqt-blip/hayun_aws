@@ -105,5 +105,3 @@ ALTER TABLE `product` ADD CONSTRAINT `FK_category_TO_product_1` FOREIGN KEY (
 REFERENCES `category` (
 	`code`
 );
-
-

@@ -1,3 +1,39 @@
+/*
+SELECT
+FROM       → 어디서 가져올까?
+JOIN       → 다른 테이블을 붙일까?
+WHERE      → 어떤 행만 가져올까?
+GROUP BY   → 같은 것끼리 묶을까?
+HAVING     → 묶은 결과 중 어떤 그룹만 남길까?
+SELECT     → 최종적으로 뭘 보여줄까?
+ORDER BY   → 어떤 순서로 보여줄까?
+LIMIT      → 몇 개 보여줄까?
+
+SELECT 쪽
+
+DISTINCT
+COUNT()
+SUM()
+AVG()
+
+WHERE 쪽 — 조건
+
+IS NULL
+IS NOT NULL
+IN
+BETWEEN
+LIKE
+=
+!=
+<>
+>
+<
+>=
+<=
+
+GROUP BY 뒤
+HAVING
+*/
 # 4. 데이터 조회 : SELECT
 # - 문법
 #	- 테이블의 모든 컬럼을 확인하고 싶으면 *을 이용
