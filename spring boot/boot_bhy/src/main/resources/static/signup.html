@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	<a href="/">메인페이로 이동</a>
+
+	<form>
+		<input name=id type="text" placeholder="아이디를 입력하세요."><br>
+		<input name=pw type=password placeholder="비번을 입력하세요."><br>
+		<input name=pw2 type=password placeholder="비번확인을 입력하세요."><br>
+		<input name=email type=email placeholder="이메일를 입력하세요."><br>
+		<button>회원가입</button>
+	</form>
+
+
+	<!-- signup.html를 생성하여 아이디, 비번, 비번확인, 이메일을 입력받아 
+		서버로 정보를 전송하는 작업을 하세요.
+		단, get방식으로(원래는 post방식인데 안배워서) 
+	 -->
+
+	<script type="text/javascript">
+   
+   //form요소를 submit했을때 아이디, 비번, 비번확인, 이메일을 가져와서 
+   //아이디, 비번, 이메일을 서버에 전송 
+   
+   	const formEl = document.querySelector("form");
+   	const idEl = document.querySelector("[name=id]");
+	const pwEl = document.querySelector("[name=pw]");
+	const pw2El = document.querySelector("[name=pw2]");
+	const emailEl = document.querySelector("[name=email]");
+	
+   
+   
+	formEl.addEventListener("submit", e=>{
+		e.preventDefault();
+		const id = idEl.value;
+		const pw = pwEl.value;
+		const pw2 = pw2El.value;
+		const email = emailEl.value;
+		
+		const queryString = `id=${id}&pw=${pw}&email=${email}`;
+		//console.log(queryString)
+		
+      const formData = new FormData(formEl);
+      //sendData1("/article1", queryString);
+      sendData(queryString);
+   });
+   
+	async function sendData(queryString){
+        try{
+           const response = await fetch("/user/signup?"+queryString);
+            
+           if(!response.ok){
+              throw Error("회원 가입 실패" + response.status);
+           }
+         //정상응답 처리
+           const result = await response.text();
+           alert(result);
+           
+        }catch(e){
+           console.error("예외 발생" , e);
+           alert(e);
+        }
+     }
+   </script>
+
+</body>
+</html>
