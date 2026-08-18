@@ -31,9 +31,14 @@ public class ArticleController {
 	//		return "1번 기사입니다.";
 	//}
 	
+	//             자료명           변수명
 	private final UserController userController;
-
-	ArticleController(UserController userController) {
+	
+	// 생성자이름(클래스이름과같)  타입         변수명    
+	//                이 타입에 변수명의 변수를 생성자가 전달받는다
+	ArticleController(UserController userController) { //생성자
+		//this.현재 이 객체 내 생성자의 변수
+		//                    생성자가 받은 변수(밖에서 전달받은)
 		this.userController = userController;
 	}
 
@@ -75,6 +80,7 @@ public class ArticleController {
 	@GetMapping("/article/list1")
 	@ResponseBody
 	public Map<String, Object> articleList1() {
+		// 객체 . 맵은 새로운 객체를 부르는이름 뉴 뒤에 해쉬맵은 클래스
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("writer", "홍길동");
 		map.put("article", "기사내용입니다.");
