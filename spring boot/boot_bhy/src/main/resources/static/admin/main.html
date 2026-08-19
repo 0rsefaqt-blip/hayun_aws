@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>부트:관리자</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/layout.js"></script>
+</head>
+<body>
+	<app-header></app-header>
+	<div class="container">
+		<h1>관리자 페이지</h1>
+	
+		<form class="input-group mb-3" id="boardForm">
+	  		<input type="text" name="board" class="form-control" placeholder="게시판을 입력해주세요.">
+	  		<button class="btn btn-success" type="submit">등록</button>
+		</form>
+	</div>
+	<script>
+	 	//form태그를 submit하면 서버로 전송하는 기능을 막고, alert(1)이 실행되도록 작성
+	 	
+	 	const formEl = document.querySelector("#boardForm");
+      	
+	 	formEl.addEventListener("submit", e=>{
+   	    	e.preventDefault();
+   	    	//input태그의 입력된 값을 가져와서 객체로 만듦
+   	    	
+   	    	//FormData를 이용하여 form태그 안에 있는 입력 정보를 객체로 가져옴
+   	 		const formData = new FormData(formEl);
+   	 		const data = Object.fromEntries(formData.entries());
+   	 		// 서버로 data를 post방식으로 전송(함수를 만들어서)
+   	 		//url: /api/admin/board
+   	 		
+   	 		submitBoard(data);
+	   	 	async function submitBoard(data){
+	   	        try{
+	   	            const response = await fetch("/api/admin/board",{
+	   	        	   method : "post",
+	   	        	   headers : {
+	   	        		   "Content-Type" : "application/json" //header에 실어 보낼 데이터 종류가 json
+	   	        	   },
+	   	           		body : JSON.stringify(data) //보낼 데이터
+	   	           });
+	   	            if(!response.ok){
+	   	            	console.log("정상 종료 아님");
+	   	            	return;
+	   	            }
+	   	         //정상응답 처리
+	   	           const result = await response.text();
+	   	           alert(result);
+	   	           
+	   	        }catch(e){
+	   	           console.error("예외 발생" , e);
+	   	           alert(e);
+	   	        }
+	   	     }
+	 	 });
+	</script>
+</body>
+</html>
