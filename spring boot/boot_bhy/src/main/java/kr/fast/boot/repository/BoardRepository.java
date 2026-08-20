@@ -6,4 +6,6 @@ import kr.fast.boot.entity.Board;
 
 public interface BoardRepository extends JpaRepository<Board, Integer> {
 
+	boolean existsByName(String board);
+
 }
