@@ -10,45 +10,35 @@
 </head>
 <body>
 	<app-header></app-header>
-	<div class="container">		
-		<h1>회원가입</h1>
-
+	<div class="container">
+		<h1>회원 가입</h1>
+		
 		<form id="form">
 			<div class="form-group mb-3">
-				<input class="form-control" name="id" type="text" placeholder="아이디를 입력하세요.">
+				<input class="form-control" name="id" type="text" placeholder="아이디를 입력하세요.">		
 			</div>
 			<div class="form-group mb-3">
-				<input class="form-control" name=pw type=password placeholder="비번을 입력하세요.">
+				<input class="form-control" name="pw" type="password" placeholder="비번을 입력하세요.">
 			</div>
 			<div class="form-group mb-3">
-				<input class="form-control" name=pw2 type=password placeholder="비번확인을 입력하세요.">			
+				<input class="form-control" name="pw2" type="password" placeholder="비번확인을 입력하세요.">
 			</div>
 			<div class="form-group mb-3">
-				<input class="form-control" name=email type=email placeholder="이메일를 입력하세요.">
+				<input class="form-control" name="email" type="email" placeholder="이메일을 입력하세요.">
 			</div>
-			<button class="btn btn-outline-succes col-12">회원가입</button>
-		</form>
+			<button class="btn btn-outline-success col-12">회원가입</button>
+		</form>	
 	</div>
 	
-
-	<!-- signup.html를 생성하여 아이디, 비번, 비번확인, 이메일을 입력받아 
-		서버로 정보를 전송하는 작업을 하세요.
-		단, get방식으로(원래는 post방식인데 안배워서) 
-	 -->
-
 	<script type="text/javascript">
-   
-    //form요소를 submit했을때 아이디, 비번, 비번확인, 이메일을 가져와서 
-    //아이디, 비번, 이메일을 서버에 전송 
-   
-   	const formEl = document.querySelector("form");
-   	const idEl = document.querySelector("[name=id]");
+		
+	//form요소를 submit했을 때 아이디, 비번, 비번확인, 이메일을 가져와서 아이디, 비번, 이메이을 서버에 전송
+	const formEl = document.querySelector("#form");
+	const idEl = document.querySelector("[name=id]");
 	const pwEl = document.querySelector("[name=pw]");
 	const pw2El = document.querySelector("[name=pw2]");
 	const emailEl = document.querySelector("[name=email]");
 	
-   
-   
 	formEl.addEventListener("submit", e=>{
 		e.preventDefault();
 		const id = idEl.value;
@@ -57,64 +47,63 @@
 		const email = emailEl.value;
 		
 		const queryString = `id=${id}&pw=${pw}&email=${email}`;
-		//console.log(queryString)
 		
-		//const formData = new FormData(formEl);
-		//sendData1("/article1", queryString);
-      	//sendData(queryString);
-      
+		//sendData(queryString);
+		
 		let user = {
-   			id, //id : id,와 같음 왼쪽은 변수명, 오른쪽은 변수
-   			pw, //pw : pw
-   			email //email : email
-      	}
-      	console.log(user);
+			id, //id : id,//왼쪽은 id라는 속성명, 오른족은 id변수
+			pw, //pw : pw,
+			email //email :email
+		}
+		
+		//console.log(user);
+		//FormData 객체를 이용하여 form태그 안에 있는 입력 태그들의 값들을 객체로 변환
 		const formData = new FormData(formEl);
 		const data = Object.fromEntries(formData.entries());
-		console.log(data);
+		//console.log(data);
 		sendDataPost(data);
-   });
-   
-	//get 방식으로 회원 정보를 전송하는 함수(실제로 하면 안됨 개인정보노출)
+		
+	});
+	//get방식으로 회원 정보를 전송하는 함수(실제로 이러면 안됨)
 	async function sendData(queryString){
-        try{
-        	const response = await fetch("/user/signup?"+queryString);
-            
-           	if(!response.ok){
-				throw Error("회원 가입 실패" + response.status);
-           	}
-         	//정상응답 처리
-           	const result = await response.text();
-           	alert(result);
-           
-       	}catch(e){
-           	console.error("예외 발생" , e);
-           	alert(e);
-        }
-     }
+		try{
+			const response = await fetch("/user/signup?"+queryString);
+			
+			if(!response.ok){
+				throw Error("회원 가입 실패")
+			}
+			
+			const result = await response.text();
+			alert(result);
+			
+		}catch(e){
+			console.error("에러 발생 : ", e)
+			alert(e);
+		}
+	}
 	
-	//post 방식으로 회원 정보를 전송
+	//회원 정보를 post 방식으로 전송
 	async function sendDataPost(data){
-        try{
-           const response = await fetch("/user/signup",{
-        	   method : "post",
-        	   headers : {
-        		   "Content-Type" : "application/json" //header에 실어 보낼 데이터 종류가 json
-        	   },
-           		body : JSON.stringify(data) //보낼 데이터
-           });
-            
-           
-         //정상응답 처리
-           const result = await response.text();
-           alert(result);
-           
-        }catch(e){
-           console.error("예외 발생" , e);
-           alert(e);
-        }
-     }
-   </script>
-
+		
+		try{
+			const response = await fetch("/user/signup", {
+				method : "post",
+				headers: {
+					"Content-Type" : "application/json"//header에 실어 보낼 데이터 종류가 json
+				},
+				body : JSON.stringify(data) //보낼 데이터
+			});
+			
+			
+			const result = await response.text();
+			alert(result);
+			
+		}catch(e){
+			console.error("에러 발생 : ", e)
+			alert(e);
+		}
+	}
+	
+	</script>
 </body>
 </html>

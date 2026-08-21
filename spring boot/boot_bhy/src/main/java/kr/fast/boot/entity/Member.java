@@ -11,19 +11,21 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "member")
 @Getter //필드들의 getter를 추가
-@NoArgsConstructor //기본 생성자 
+@NoArgsConstructor //기본 생성자
 @AllArgsConstructor //모든 필드를 매개변수로 하는 생성자를 추가
 public class Member {
 
-	@Id
+	@Id//기본키
+	@Column(length =15)
 	private String id;
 	
-	@Column(nullable = false, length = 255)
+	@Column(nullable = false, length =255)
 	private String password;
 	
-	@Column(nullable = false, length = 255)
+	@Column(nullable = false, length =255)
 	private String email;
 	
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false, length =10)
 	private String role;
+	
 }
