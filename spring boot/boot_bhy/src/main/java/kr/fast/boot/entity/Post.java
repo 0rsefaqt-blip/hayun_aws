@@ -32,7 +32,7 @@ public class Post {
 	@Column(name="down_count")
 	private int downCount;
 	@Column(name="is_deleted", nullable = false)
-	private char isDeleted = 'N';
+	private String isDeleted = "N";
 	@Column(name="member_id")
 	private String memberId;
 	@Column(name="board_id")
@@ -43,5 +43,22 @@ public class Post {
 		this.content = content;
 		this.memberId = writer;
 		this.boardId = boardId;
+	}
+
+	public void updateView() {
+		this.viewCount ++;
+		
+	}
+
+	public void delete() {
+		isDeleted = "Y";
+		
+	}
+
+	public void update(String title, String content) {
+		this.title = title;
+		this.content = content;
+	
+		
 	}
 }
