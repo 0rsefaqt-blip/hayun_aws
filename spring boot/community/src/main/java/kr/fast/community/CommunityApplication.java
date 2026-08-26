@@ -1,14 +1,14 @@
-package kr.fast.boot;
+package kr.fast.community;
 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BootBhyApplication {
+public class CommunityApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootBhyApplication.class, args);
+		SpringApplication.run(CommunityApplication.class, args);
 	}
 
 }
