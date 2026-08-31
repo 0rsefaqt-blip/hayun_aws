@@ -26,7 +26,6 @@ document.addEventListener("header-loaded", async e=>{
    
    const info = await getMyInfo();
    if(!info || !info.username){
-      console.log("게스트")
       showByRole("GUEST");
    }
    else{
