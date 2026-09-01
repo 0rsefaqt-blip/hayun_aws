@@ -14,12 +14,12 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CustomUserDetails implements UserDetails {
-
+	
 	private final String username;
 	private final String nickname;
 	private final String email;
 	private final Collection<? extends GrantedAuthority> authorities;
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
@@ -34,5 +34,4 @@ public class CustomUserDetails implements UserDetails {
 	public String getUsername() {
 		return username;
 	}
-
 }

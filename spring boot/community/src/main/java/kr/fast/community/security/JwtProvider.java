@@ -24,8 +24,9 @@ public class JwtProvider{
         this.expiration = expiration;
     }
 
+    //nickname과 email을 추가하는 경우 주석을 참고
     public String createToken(String username, String role
-    		//String nickname, String email
+    		/*, String nickname, String email */
     		){
         Date now = new Date();
         Date validity = new Date(now.getTime() + expiration);

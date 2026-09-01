@@ -1,10 +1,6 @@
 package kr.fast.community.entity;
 
-
-
 import java.util.Date;
-
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,10 +45,9 @@ public class Post {
 	@Column(name="member_id")
 	private String memberId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)//다 대 일. 여러 게시글이 하나의 게시판과 연결. 지연 로딩 
+	@ManyToOne(fetch=FetchType.LAZY)//다대일. 여러 게시글이 하나의 게시판과 연결. 지연 로딩
 	@JoinColumn(name="board_id")//자동으로 join문을 만들어 게시판 정보를 가져옴
 	private Board board;
-	
 	
 	public Post(String title, String content, String writer, Integer boardId) {
 		this.title = title;
@@ -80,8 +75,7 @@ public class Post {
 		this.content = content;
 		this.board = board;
 		this.memberId = memberId;
-		
 	}
-}
 
 	
+}

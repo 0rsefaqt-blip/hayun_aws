@@ -34,18 +34,18 @@ public class AuthController {
 		try {
 			MessageResponse messageResponse = authService.signup(signupRequest);
 			return ResponseEntity.ok(messageResponse);
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok(new MessageResponse(false, e.getMessage()));
 		}
+		
 	}
 	
 	@PostMapping("/login")
 	public ResponseEntity<Object> login(@RequestBody LoginRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			//서비스야 사원증 발급해줘 아이디 비번 줄게
+			//서비스야 사원증 발급해줘. 아이디 비번 줄게
 			String accessToken = authService.login(request);
 			map.put("accessToken", accessToken);
 			map.put("state", new MessageResponse(true, "로그인을 했습니다."));
@@ -55,8 +55,8 @@ public class AuthController {
 			map.put("state", new MessageResponse(false, e.getMessage()));
 		}
 		return ResponseEntity.ok(map);
+		
 	}
-	
 	@GetMapping("/me")
 	public ResponseEntity<Object> me(@AuthenticationPrincipal CustomUserDetails userDetails){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -64,7 +64,7 @@ public class AuthController {
 			map.put("username", userDetails.getUsername());
 			map.put("email", userDetails.getEmail());
 			map.put("nickname", userDetails.getNickname());
-
+			
 			List<String> list = new ArrayList<String>();
 			for(GrantedAuthority tmp : userDetails.getAuthorities()) {
 				list.add(tmp.getAuthority());
@@ -72,5 +72,6 @@ public class AuthController {
 			map.put("role", list);
 		}
 		return ResponseEntity.ok(map);
+		
 	}
 }

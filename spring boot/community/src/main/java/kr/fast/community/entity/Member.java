@@ -15,27 +15,23 @@ import lombok.ToString;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 public class Member {
-	
+
 	@Id
 	private String id;
 	
 	@Column(name="password")
 	private String pw;
-
+	
 	@Column(name="email")
 	private String email;
-
+	
 	@Column(name="role")
 	private String role = "USER";
 
 	public Member(String id, String pw, String email) {
-		super();
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
 	}
 	
-	
-
-
 }

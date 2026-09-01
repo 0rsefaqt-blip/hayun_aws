@@ -17,10 +17,10 @@ import lombok.AllArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
-	
+
 	@PostMapping("")
 	public ResponseEntity<Object> post(){
-		//서비스야 게시판 목록 가져와
+		//서비스야 게시판목록 가져와
 		List<Board> list = boardService.getBoards();
 		return ResponseEntity.ok(list);
 	}

@@ -34,12 +34,12 @@ async function authFetch(url, options ={}){
 		...options.headers
 	}
 	
-	//토큰 가져옴. 사원증을 
+	//토큰 가져옴. 사원증을 가져옴
 	const accessToken = localStorage.getItem("accessToken");
 	
-	//토큰이 있으면 headers에 토큰 정보를 추가
-	if(accessToken){//사원증이 있으면
-		headers["Authorization"] = "Bearer " + accessToken;//요청할 때 사원증 보여주기		
+	//토큰이 있으면 headers에 토큰 정보를 추가. 
+	if(accessToken){ //사원증이 있으면
+		headers["Authorization"] = "Bearer " + accessToken;	//요청할 때 사원증 보여주기	
 	}
 	
 	const config = {
