@@ -102,4 +102,34 @@ function changeInput(e){
 	const {name, value}	= e.target;
 	//객체에 있는 속성의 값을 변경
 	data[name] = value;
+
+	
+/* ========================
+- 게시판 목록을 가져와서 화면에 배치
+======================== */
+async function getCommentsAndDisplay(){
+	try{
+		//게시판 목록 가져오기
+		const response = await fetch(`/api/comments`, {
+			method : "post",
+			headers : {
+				"Content-Type" : "application/json"
+			},
+			body : JSON.stringify(data)
+		});
+		
+		const result = await response.json();
+		
+		//게시판 목록을 화면에 배치하기
+		let html = '<option value="">게시판을 선택하세요.</option>';
+		result.forEach(board=>{
+			html += `
+				<option value="${board.id}">${board.name}</option>
+			`;
+		});
+		document.querySelector("[name=boardId]").innerHTML = html;
+	}catch(e){
+		console.error(e);
+	}
+}
 }
