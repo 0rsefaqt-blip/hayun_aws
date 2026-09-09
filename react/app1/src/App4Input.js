@@ -25,5 +25,13 @@ function App4(){
     </div>
   )
 }
+function 함수명(){
 
+}
+let 함수 = function(){
+
+}
+let 함수2 = ()=>{
+  
+}
 export default App4;
