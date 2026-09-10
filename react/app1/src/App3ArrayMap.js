@@ -5,7 +5,7 @@ const datas = [
     num : 2,
     title : "공지입니다",
     memberId : "admin",
-    createAT : "2026-09-08",
+    createAt : "2026-09-08",
     view : 0,
     upCount : 0,
     downCount : 0
@@ -14,7 +14,7 @@ const datas = [
     num : 1,
     title : "안녕하세요",
     memberId : "admin",
-    createAT : "2026-09-07",
+    createAt : "2026-09-07",
     view : 10,
     upCount : 1,
     downCount : 1
@@ -55,7 +55,7 @@ function App3(){
                 <td>{post.num}</td>
                 <td>{post.title}</td>
                 <td>{post.memberId}</td>
-                <td>{post.createAT}</td>
+                <td>{post.createAt}</td>
                 <td>{post.view}</td>
                 <td>{post.upCount}/{post.downCount}</td>
               </tr>
