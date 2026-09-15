@@ -1,19 +1,22 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import { Container, Card, Form, Button } from "react-bootstrap";
+import { useAuth } from "../../../provider/AuthContext";
 
-export function Signup(){
+export function Login(){
 
-	const [data, setData] = useState({email :'', pw : '', pw2 : '', nickname : ''})
+	const [data, setData] = useState({email :'', pw : ''})
 
 	const inputChange = (e) => setData({...data, [e.target.name] : e.target.value});
 
 	const navigate = useNavigate();
 
+  const {getMeAndSetUser} = useAuth();
+
 	const submitHandler = async e=>{
 		e.preventDefault();
 		try{
-			const response = await fetch("/api/auth/users", {
+			const response = await fetch("/api/auth/login", {
 				method : "POST",
 				headers : {
 					"Content-Type" : "application/json"
@@ -24,6 +27,8 @@ export function Signup(){
 			const result = await response.json();
 			alert(result.message);
 			if(result.success){
+        localStorage.setItem("accessToken", result.accessToken);
+        getMeAndSetUser();
 				navigate("/");
 			}
 
@@ -37,7 +42,7 @@ export function Signup(){
       <Card className="shadow-sm" style={{ width: "100%", maxWidth: "420px" }}>
         <Card.Body className="p-4">
           <Card.Title as="h1" className="h3 mb-4 text-center fw-bold">
-            회원가입
+            로그인
           </Card.Title>
 
           <Form onSubmit={submitHandler}>
@@ -52,7 +57,7 @@ export function Signup(){
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="pw">
+            <Form.Group className="mb-4" controlId="pw">
               <Form.Label>비밀번호</Form.Label>
               <Form.Control
                 type="password"
@@ -63,30 +68,8 @@ export function Signup(){
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="pw2">
-              <Form.Label>비밀번호 확인</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="비밀번호를 다시 입력하세요"
-                name="pw2"
-                value={data.pw2}
-                onChange={inputChange}
-              />
-            </Form.Group>
-
-            <Form.Group className="mb-4" controlId="nickname">
-              <Form.Label>닉네임</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="닉네임을 입력하세요"
-                name="nickname"
-                value={data.nickname}
-                onChange={inputChange}
-              />
-            </Form.Group>
-
             <Button type="submit" variant="primary" className="w-100">
-              회원가입
+              로그인
             </Button>
           </Form>
         </Card.Body>

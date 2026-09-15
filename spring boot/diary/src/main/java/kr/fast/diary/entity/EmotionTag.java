@@ -16,12 +16,12 @@ public class EmotionTag {
 
     @Id
     @Column(name="emotion_tag_id")
-    Long id;
+    private Long id;
     
-    String name;
+    private String name;
     
-    String emoji;
+    private String emoji;
 
     @Column(name="display_order")
-    int displayOrder;
+    private int displayOrder;
 }

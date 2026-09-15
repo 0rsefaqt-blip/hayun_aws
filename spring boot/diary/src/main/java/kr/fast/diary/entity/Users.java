@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import kr.fast.diary.dto.UserDTO;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Users {
+
 
 	   @Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +30,13 @@ public class Users {
 	   private String password;
 	   
 	   private String nickname;
-	   
-	   @Column(name="create_at")
-	   private LocalDateTime createdAt;
 
+	   @Column(name = "created_at", nullable = false)
+	   LocalDateTime createdAt = LocalDateTime.now();
+
+	   public Users(String email, String password, String nickname) {
+		   this.email = email;
+		   this.password = password;
+		   this.nickname = nickname;
+	   }
 }
