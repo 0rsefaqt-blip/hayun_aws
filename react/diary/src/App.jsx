@@ -3,7 +3,8 @@ import { Signup } from "./component/page/user/Signup";
 import { Login } from "./component/page/user/Login";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "./provider/AuthContext";
-import { Diary } from "./component/page/diary/Diary"
+import { DiaryInsert } from "./component/page/diary/DiaryInsert"
+import { MyNav } from "./component/layout/MyNav";
 function App() {
   
   /*
@@ -27,32 +28,12 @@ function App() {
   */
   return (
     <BrowserRouter>
-      <Navbar bg="light" expand="lg" className="shadow-sm mb-4">
-        <Container>
-          <Navbar.Brand as={Link} to="/">
-            MyApp
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="main-nav" />
-          <Navbar.Collapse id="main-nav">
-            <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/signup">
-                회원가입
-              </Nav.Link>
-              <Nav.Link as={Link} to="/login">
-                로그인
-              </Nav.Link>
-              <Nav.Link as={Link} to="/diary">
-                일기작성
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <MyNav />
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
-        <Route path="/diary" element={<Diary/>}></Route>
+        <Route path="/diary/insert" element={<DiaryInsert/>}></Route>
       </Routes>
     </BrowserRouter>
   );
@@ -62,7 +43,7 @@ function Home(){
   return (
     <div>
       <h1>홈</h1>
-      {user ? <h2>{user.nickname}님 환영합니다.</h2> : <></>}
+      {user && user.nickname ? <h2>{user.nickname}님 환영합니다.</h2> : <></>}
     </div>
   )
 }

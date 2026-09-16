@@ -13,15 +13,20 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EmotionTag {
+	
 
-    @Id
-    @Column(name="emotion_tag_id")
-    private Long id;
-    
-    private String name;
-    
-    private String emoji;
+	@Id
+	@Column(name = "emotion_tag_id")
+	Long id; 
+	
+	String name; 
+	String emoji; 
+	
+	@Column(name = "display_order")
+	int displayOrder;
+	
 
-    @Column(name="display_order")
-    private int displayOrder;
+	public EmotionTag(Long emoId) {
+		this.id = emoId;
+	}
 }
