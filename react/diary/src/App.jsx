@@ -5,6 +5,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "./provider/AuthContext";
 import { DiaryInsert } from "./component/page/diary/DiaryInsert"
 import { MyNav } from "./component/layout/MyNav";
+import { DiaryList } from "./component/page/diary/DiaryList";
 function App() {
   
   /*
@@ -34,6 +35,7 @@ function App() {
         <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/diary/insert" element={<DiaryInsert/>}></Route>
+        <Route path="/diary/list" element={<DiaryList/>}></Route>
       </Routes>
     </BrowserRouter>
   );
