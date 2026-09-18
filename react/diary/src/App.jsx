@@ -1,11 +1,13 @@
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import { Signup } from "./component/page/user/Signup";
 import { Login } from "./component/page/user/Login";
-import { Container, Nav, Navbar } from "react-bootstrap";
+
 import { useAuth } from "./provider/AuthContext";
-import { DiaryInsert } from "./component/page/diary/DiaryInsert"
 import { MyNav } from "./component/layout/MyNav";
+import { DiaryInsert } from "./component/page/diary/DiaryInsert";
 import { DiaryList } from "./component/page/diary/DiaryList";
+import { DiaryDetail } from "./component/page/diary/DiaryDetail";
+
 function App() {
   
   /*
@@ -29,13 +31,15 @@ function App() {
   */
   return (
     <BrowserRouter>
-      <MyNav />
+      <MyNav/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/diary/insert" element={<DiaryInsert/>}></Route>
         <Route path="/diary/list" element={<DiaryList/>}></Route>
+        <Route path="/diary/detail/:id" element={<DiaryDetail/>}></Route>
+        <Route path="/diary/detail/public/:id" element={<DiaryDetail isPublic={true}/>}></Route>
       </Routes>
     </BrowserRouter>
   );
