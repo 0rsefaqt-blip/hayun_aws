@@ -26,3 +26,5 @@ replay_pid*
 .classpath
 .project
 */.gitignore
+/spring boot/trab/.gradle
+/spring boot/trab/.settings
