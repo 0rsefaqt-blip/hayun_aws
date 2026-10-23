@@ -28,3 +28,8 @@ replay_pid*
 */.gitignore
 /spring boot/trab/.gradle
 /spring boot/trab/.settings
+
+#파이썬 gitignore
+.venv/
+__pycache__/
+.env
