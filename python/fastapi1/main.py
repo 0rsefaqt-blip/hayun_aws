@@ -1,42 +1,39 @@
 # main.py
 from fastapi import FastAPI, Query
-from typing import Literal
-from pydantic import BaseModel, Field
-
-from routers import users
 
 app = FastAPI(title="AI Server")
-app.include_router(users.router)
 
-class UserCreate(BaseModel):
-	name: str = Field(min_length=2, max_length=20)
-	age: int = Field(ge=0, le=150)
-	email: str | None = None
-	tags: list[str] = []
-    
-
-@app.get("/health")
+# 기본 설명
+@app.get("/")
 def health() -> dict:
-  return {"status": "ok"}
+    return {"status": "ok"}
 
-# @app.get("/users/{user_id}")
-# def get_user(user_id:int) ->dict:
-# 	return {"user_id" : user_id}
+# 스프링의 @PathVariable 처리를 fastAI에서는 어떻게 하는지
+@app.get("/users/{user_id}")
+def get_user(user_id:int) -> dict:
+    
+    return { "userId" : user_id }
 
+# url에 ?변수1=값&변수2=값 형태로 오는 경우
 @app.get("/search")
-def search(q: str, page:int = 1, keword : str | None = None)->dict:
-	return { "q" : q, "page" : page, "keyowrd" : keword}
+def search(q:str, page:int = 1, keyword:str | None = None) -> dict:
+
+		return {"query" : q, "page" : page, "keyword" : keyword}
 
 @app.get("/products")
 def list_products(
-	page : int = Query(default=1, ge=1)
+		#인자 값을 검사. ge: 크거나 같다, le: 작거나 같다
+    page: int = Query(default=1, ge=1),
+    size: int = Query(default=10, ge=1, le=100),
 ) -> dict:
-	return {"page" : page}
+    return {"page": page, "size": size}
 
-@app.get("/posts")
-def list_posts(sort: Literal["latest", "popular"] = "latest") -> dict:
-    return {"sort": sort}
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    name: str
 
-@app.post("/users")
-def create_user(user: UserCreate) -> dict:
-    return {"received": user.model_dump()}
+@app.get("/users2/{user_id}", response_model=UserResponse, status_code=201)
+def get_user2(user_id:int) -> dict:
+    
+    return { "id":1, "email":"xxx@naver.com", "name":"홍길동", "phone":"011-1111-1111" }
