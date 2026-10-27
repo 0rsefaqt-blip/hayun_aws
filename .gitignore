@@ -33,3 +33,6 @@ replay_pid*
 .venv/
 __pycache__/
 .env
+
+# jupyter notebook
+.ipynb_checkpoints/
