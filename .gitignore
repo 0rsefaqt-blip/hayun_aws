@@ -39,3 +39,8 @@ __pycache__/
 
 # 예제 이미지 파일
 digits_images/
+data/
+
+**/dl/*.pt
+**/dl/*.pkl
+python/dl/used_cars.csv
