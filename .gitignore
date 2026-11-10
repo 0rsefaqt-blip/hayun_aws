@@ -44,3 +44,5 @@ data/
 **/dl/*.pt
 **/dl/*.pkl
 python/dl/used_cars.csv
+usedcar-ai/ai-server/models/car_type_metrics.json
+usedcar-ai/ai-server/models/car_type_model.pt
