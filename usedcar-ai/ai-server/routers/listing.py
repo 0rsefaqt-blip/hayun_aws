@@ -17,6 +17,12 @@ from datetime import datetime
 from pathlib import Path
 from models import train_price_model
 from pydantic import ValidationError
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.messages import AIMessage
+from langchain_core.prompts import MessagesPlaceholder
 
 router = APIRouter(prefix="/listing", tags=["3 판매글"])
 
@@ -26,6 +32,28 @@ SCALER_PATH = Path(__file__).resolve().parent.parent / "models" / "price_scaler.
 client = None  # 서버가 켜질 때 load()가 채운다 (LLM API 클라이언트)
 model = None
 scaler = None 
+
+extract_chain = None # 판매글 메모에서 자동차 정보 추출하는 체인
+write_chain = None # 판매글 작성하는 체인
+
+# llm 만드는 함수. 함수로 만든 이유 : 여러 모델을 이용
+def make_llm(schema, temperature):
+    """MODELS를 순서대로 실행하고 결과를 schema(Pydantic) 객체로 돌려주는 LLM"""
+    llms = [
+        ChatGoogleGenerativeAI(
+            model = name,
+            temperature = temperature,
+            max_tetries = 2,
+            google_api_key = c.api_key 
+        ).with_structured_output(schema)
+        for name in c.MODELS
+    ]
+    return llms[0].with_fallbacks(llms[1:])
+
+# Extract 프롬프트
+EXTRACT_PROMPT = ChatPromptTemplate.from_messages([
+    
+])
 
 def load():
     """서버가 켜질 때 main.py가 한 번 부른다"""
